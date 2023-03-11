@@ -138,7 +138,7 @@
                     </div>
                     <div class="modal-body">
                         <h3 id="random_result_name">Adobob</h3>
-                        <img id="random_result_image" class="d-block w-100 imgcustom" src="/img/adobo.jpg">
+                        <img id="random_result_image" class="d-block w-100" src="/img/adobo.jpg">
                         <h5 id="random_result_description">Ulapaaa!</h5>
 
 
