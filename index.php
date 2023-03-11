@@ -8,7 +8,12 @@ $query = new QueryBuilder(
 
 $data = $query->selectAll('ulala_table');
 
-require 'index.view.php';
+$indexArray = array();
 
+foreach($data as $ulam){
+    array_push($indexArray, $ulam->id);
+}
+
+require 'index.view.php';
 
 ?>

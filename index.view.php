@@ -93,7 +93,6 @@
         <div class="modal fade" id="modalListUlam" tabindex="-1" role="dialog" aria-labelledby="modalListUlamLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
-                    <!-- <form action="/add.php" method="post" enctype="multipart/form-data">     -->
                     <div class="modal-header">
                         <h5 class="modal-title" id="modalListUlamLabel">List of Ulam</h5>
                     </div>
@@ -125,10 +124,38 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     </div>
-                    <!-- </form> -->
                 </div>
             </div>
         </div>
+
+
+        <!-- Congratulations modal -->
+        <div class="modal fade" id="modalDisplayRandom" tabindex="-1" role="dialog" aria-labelledby="modalDisplayRandomLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title" id="modalDisplayRandomLabel">Congratulations! You are eating</h2>
+                    </div>
+                    <div class="modal-body">
+                        <h3 id="random_result_name">Adobob</h3>
+                        <img id="random_result_image" class="d-block w-100 imgcustom" src="/img/adobo.jpg">
+                        <h5 id="random_result_description">Ulapaaa!</h5>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    <!-- test -->
+    <script>
+    var indexArray = <?php echo json_encode($indexArray); ?>;
+    </script>
 
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

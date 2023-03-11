@@ -1,11 +1,35 @@
-// $(document).ready(function(){
-//     alert("loaded");
-// });
-
-
 function function_randomize(){
-    alert("xey");
+    // get the array
+    const array = indexArray;
+
+    // randomize
+    const generated_random_number = Math.floor(Math.random() * array.length);
+    const item = array[generated_random_number];
+
+    // display the generated value
+    var data = {
+        'updateId' : item,
+    };
+
+    $.ajax({
+        type: "GET",
+        url : "fetch.php",
+        dataType: "json",
+        crossDomain: "true",
+        contentType: "application/json; charset=utf-8",
+        data: data,
+        success: function (data) {
+            // show the modal add with data
+            document.getElementById('random_result_name').innerHTML = data.name;
+            document.getElementById('random_result_description').innerHTML = data.description;
+            document.getElementById('random_result_image').src = "img/" + data.imagepath;
+            $("#modalDisplayRandom").modal("show");
+        },
+        error: function () {
+            location.reload();
+        }});
 }
+
 
 
 function function_delete(selected_id){
@@ -66,7 +90,6 @@ function function_update(selected_id){
         error: function () {
             location.reload();
         }});
-
 }
 
 function function_add_ulam_reset_properties(){
@@ -75,5 +98,4 @@ function function_add_ulam_reset_properties(){
     document.getElementById('update_button_when_update').innerHTML = "Save Ulam Entry";
     document.getElementById("hide_image_when_update").style.display  = "block";
     document.getElementById("update_action_when_update").action  = "/add.php";
-
 }
