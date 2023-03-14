@@ -9,7 +9,7 @@ $query = new QueryBuilder(
     Connection::make($config['database'])
 );
 
-$file_name = $query->selectId($id, 'ulala_table');
+$file_name = $query->selectById('ulala_table', $id);
 $location_with_file_name = "img/"."$file_name->imagepath";
 $delete = unlink($location_with_file_name);
 
@@ -18,7 +18,7 @@ $query = new QueryBuilder(
     Connection::make($config['database'])
 );
 
-$query->deleteUlam($id, 'ulala_table');
+$query->deleteById('ulala_table', $id);
 
 // return
 echo json_encode("success");

@@ -46,10 +46,10 @@ if (file_exists($target_file)) {
   // if everything is ok, try to upload file
   } else {
     if (move_uploaded_file($_FILES["ulam_picture"]["tmp_name"], $target_file)) {
-        $query = new QueryBuilder(
+        $query = new QueryBuilderUlam(
             Connection::make($config['database'])
         );
-        $query->addUlam($name, $description, $imagepath);
+        $query->insertUlam('ulala_table', $name, $description, $imagepath);
         header('location: /');
     } else {
       echo "Sorry, there was an error uploading your file.";

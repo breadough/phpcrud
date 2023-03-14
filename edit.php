@@ -7,10 +7,10 @@ $name = $_POST['ulam_name'];
 $description = $_POST['ulam_description'];
 
 
-$query = new QueryBuilder(
+$query = new QueryBuilderUlam(
     Connection::make($config['database'])
 );
 
-$query->updateId($id, $name, $description, 'ulala_table');
+$query->updateUlamById('ulala_table', $id, $name, $description);
 
 header('location: /');

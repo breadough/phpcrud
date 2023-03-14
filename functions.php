@@ -35,29 +35,50 @@ class QueryBuilder
 		return $statement->fetchAll(PDO::FETCH_OBJ);
     }
 
-    public function selectId($id, $table)
+    public function selectById($table, $id)
     {
         $statement = $this->pdo->prepare("select * from {$table} where id = {$id}");
 		$statement->execute();
 		return $statement->fetch(PDO::FETCH_OBJ);
 	}
 
-    public function addUlam($name, $description, $imagepath)
+    public function deleteById($table, $id)
     {
-        $sql = "insert into `ulala_table`(`name`, `description`, `imagepath`) VALUES( :name, :description, :imagepath )";
+		$statement = $this->pdo->prepare("delete from {$table} where id = {$id}");
+        $statement->execute();
+    }
+
+}
+  
+class QueryBuilderUlam extends QueryBuilder{
+    
+    public function insertUlam($table, $name, $description, $imagepath)
+    {
+        $sql = "insert into {$table}(`name`, `description`, `imagepath`) VALUES( :name, :description, :imagepath )";
 		$statement = $this->pdo->prepare($sql);
 		$statement->execute([':name'=>$name, ':description'=>$description, ':imagepath'=>$imagepath]);
     }
 
-    public function updateId($id, $name, $description, $table){
+    public function updateUlamById($table, $id, $name, $description){
         $sql = "update {$table} set name=:name, description=:description where id = {$id}";
 		$statement = $this->pdo->prepare($sql);
 		$statement->execute([':name'=>$name, ':description'=>$description]);
     }
+}
 
-    public function deleteUlam($id, $table)
+class QueryBuilderShop extends QueryBuilder{
+    
+    public function insertShop($table, $name, $location, $website)
     {
-		$statement = $this->pdo->prepare("delete from {$table} where id = {$id}");
-        $statement->execute();
+        $sql = "insert into {$table}(`name`, `location`, `website`) VALUES( :name, :location, :website )";
+		$statement = $this->pdo->prepare($sql);
+		$statement->execute([':name'=>$name, ':location'=>$location, ':website'=>$website]);
+    }
+
+    public function updateShopById($table, $id, $name, $location, $website)
+    {
+        $sql = "update into set name=:name, location=:location, website=:website where id = {$id}";
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute([':name'=>$name, ':location'=>$location, ':website'=>$website]);
     }
 }
