@@ -24,6 +24,8 @@
                 <button type="button" class="btn btn-success" onclick=function_randomize()>Decide my Ulalam!</button>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAddUlam" onclick="function_add_ulam_reset_properties()">Add a choice of Ulam! Yum!</button>
                 <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalListUlam">List of Ulam</button>
+                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalListShop">Order now!</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalAddShop">Add Shop</button>
             </div>
         </div>
 
@@ -31,7 +33,7 @@
                 <div id="carousel" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <?php $i = 0; ?>
-                        <?php foreach($data as $ulam) : ?>
+                        <?php foreach($data_ulam as $ulam) : ?>
                             <?php if($i === 0): ?>
                                 <div class="carousel-item active">
                             <?php else: ?>    
@@ -102,12 +104,12 @@
                                 <tr>
                                     <th scope="col">Name</th>
                                     <th scope="col">Description</th>
-                                    <th scope="col">Image</th>
+                                    <5th scope="col">Image</th>
                                     <th scope="col">Settings</th>
                                 </tr>
                             </thead>
                             <tbody>
-                            <?php foreach($data as $ulam) : ?>
+                            <?php foreach($data_ulam as $ulam) : ?>
                                 <tr>
                                     <td><?=$ulam->name?></td>
                                     <td><?=$ulam->description?></td>
@@ -128,6 +130,71 @@
             </div>
         </div>
 
+
+        <!-- Render List of Shops using modal -->
+        <div class="modal fade" id="modalListShop">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalListShopLabel">Available Restaurants</h5>
+                    </div>
+                    <div class="modal-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Shop Name</th>
+                                    <th scope="col">Location</th>
+                                    <th scope="col">Link</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php foreach($data_shop as $shop) : ?>
+                                    <tr>
+                                        <td><?=$shop->name?></td>
+                                        <td><?=$shop->location?></td>
+                                        <td><a href="<?=$shop->website?>"><?=$shop->website?></a></td>
+                                    </tr>
+                                <?php endforeach ;?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="modalAddShop">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <form action="/addshop.php" method="post">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalAddShopLabel">Available Restaurants</h5>
+                    </div>
+                    <div class="modal-body">
+                            <div class="form-group mb-2">
+                                <span class="input-group-text">Restaurant's Name</span>
+                                <input type="text" class="form-control" id="shop_name" name="shop_name">
+                            </div>
+                            <div class="form-group mb-2">
+                                <span class="input-group-text">Location</span>
+                                <input type="text" class="form-control" id="shop_location" name="shop_location">
+                            </div>
+                            <div class="form-group mb-2">
+                                <span class="input-group-text">Website</span>
+                                <input type="text" class="form-control" id="shop_website" name="shop_website">
+                            </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Add Shop</button>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
 
         <!-- Congratulations modal -->
         <div class="modal fade" id="modalDisplayRandom" tabindex="-1" role="dialog" aria-labelledby="modalDisplayRandomLabel" aria-hidden="true">
