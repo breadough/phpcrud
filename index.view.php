@@ -104,7 +104,7 @@
                                 <tr>
                                     <th scope="col">Name</th>
                                     <th scope="col">Description</th>
-                                    <5th scope="col">Image</th>
+                                    <th scope="col">Image</th>
                                     <th scope="col">Settings</th>
                                 </tr>
                             </thead>
